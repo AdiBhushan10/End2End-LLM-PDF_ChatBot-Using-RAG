@@ -1,0 +1,18 @@
+#Load the data file and parse
+datafile = SimpleDirectoryReader("data").load_data()
+
+#Create embeddings and index it
+idx = VectorStoreIndex.from_documents(datafile)
+
+#Create a query engine to run queries
+query_engine = idx.as_query_engine()
+
+#Run a query
+answer = query_engine.query("What is generative AI?")
+print(answer)
+
+'''
+All in one line
+---------------------------------------
+print(VectorStoreIndex.from_documents(SimpleDirectoryReader("data").load_data()).as_query_engine().query("What is generative AI?"))
+'''
